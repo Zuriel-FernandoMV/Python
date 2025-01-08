@@ -1,0 +1,57 @@
+import os
+
+tasks = []
+
+def display_tasks():
+    if not tasks:
+        print("\nNo hay tareas en la lista.\n")
+    else:
+        print("\nTareas:")
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task}")
+        print()
+
+def add_task():
+    task = input("Escribe una nueva tarea: ").strip()
+    if task:
+        tasks.append(task)
+        print("Tarea añadida.\n")
+    else:
+        print("No se puede añadir una tarea vacía.\n")
+
+def remove_task():
+    display_tasks()
+    if tasks:
+        try:
+            task_number = int(input("Escribe el número de la tarea a eliminar: "))
+            if 1 <= task_number <= len(tasks):
+                removed_task = tasks.pop(task_number - 1)
+                print(f"Tarea eliminada: {removed_task}\n")
+            else:
+                print("Número inválido.\n")
+        except ValueError:
+            print("Por favor, ingresa un número válido.\n")
+
+def main():
+    while True:
+        print("Gestor de Tareas")
+        print("1. Ver tareas")
+        print("2. Añadir tarea")
+        print("3. Eliminar tarea")
+        print("4. Salir")
+        choice = input("Elige una opción: ").strip()
+
+        if choice == "1":
+            display_tasks()
+        elif choice == "2":
+            add_task()
+        elif choice == "3":
+            remove_task()
+        elif choice == "4":
+            print("¡Adiós!")
+            break
+        else:
+            print("Opción no válida. Inténtalo de nuevo.\n")
+
+if __name__ == "__main__":
+    main()
